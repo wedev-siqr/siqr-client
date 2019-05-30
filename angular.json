@@ -50,7 +50,7 @@
               "src/electron/electron.prod.js",
               "src/package.json"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/styles.scss", "src/theme.scss"],
             "scripts": [],
             "es5BrowserSupport": true
           },
