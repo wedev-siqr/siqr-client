@@ -4,7 +4,7 @@
   "main": "./electron/electron.prod.js",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently -k -kill-others-on-fail \"ng serve\" \"npm:electron:run\"",
+    "start": "concurrently \"ng serve\" \"npm:electron:run\"",
     "start:prod": "concurrently -k -kill-others-on-fail \"ng serve --prod\" \"npm:electron:run:prod\"",
     "build": "cp package.json ./src && ng build",
     "test": "ng test",

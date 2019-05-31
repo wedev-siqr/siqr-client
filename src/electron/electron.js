@@ -1,4 +1,3 @@
-const { join } = require('path');
 const { format } = require('url');
 const { BrowserWindow, app } = require('electron');
 try {
@@ -12,6 +11,9 @@ function createWindow() {
     width: 800,
     height: 600,
     icon: './src/favicon.ico',
+    webPreferences: {
+      nodeIntegration: false,
+    },
   });
   win.loadURL(
     format({
