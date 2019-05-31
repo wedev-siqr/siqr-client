@@ -1,0 +1,16 @@
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" [fixedInViewport]="true" [fixedTopGap]="64">
+    <mat-nav-list>
+      <a
+        mat-list-item
+        *ngFor="let item of links$ | async"
+        [routerLink]="[item.link]"
+      >
+        {{ item.label }}
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content fxFlex [style.padding.px]="15">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

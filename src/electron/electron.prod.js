@@ -9,6 +9,9 @@ function createWindow() {
     width: 800,
     height: 600,
     icon: join(__dirname, 'favicon.ico'),
+    webPreferences: {
+      nodeIntegration: false,
+    },
   });
   win.loadURL(
     format({
