@@ -1,19 +1,35 @@
+const waitOn = require('wait-on');
 const { format } = require('url');
 const { BrowserWindow, app } = require('electron');
 try {
   require('electron-reloader')(module);
-} catch (err) {}
+} catch (err) {
+  console.error('Error with electron-reloader', err);
+}
 
 let win;
 
+process.stdin.resume();
+
+const quitHandler = () => {
+  win.close();
+  app.quit();
+};
+
+process.on('SIGTERM', quitHandler);
+process.on('SIGKILL', quitHandler);
+
 function createWindow() {
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 768,
+    minWidth: 1024,
+    height: 768,
     icon: './src/favicon.ico',
     webPreferences: {
       nodeIntegration: false,
     },
+    title: 'SIQR - WeDev',
   });
   win.loadURL(
     format({
@@ -43,7 +59,19 @@ function createWindow() {
   });
 }
 
-app.on('ready', createWindow);
+app.on('ready', () => {
+  createWindow();
+  win.maximize();
+  waitOn({
+    resources: ['http-get://127.0.0.1:4200'],
+    interval: 500,
+  })
+    .then(() => {
+      console.log('Localhost ready.');
+      win.reload();
+    })
+    .catch(console.error);
+});
 
 app.on('window-all-closed', () => {
   app.quit();

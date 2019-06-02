@@ -1,12 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LayoutComponent } from './layout.component';
-import { RouterModule } from '@angular/router';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterModule } from '@angular/router';
+import { LayoutComponent } from './layout.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
-const MATERIAL_MODULES = [MatSidenavModule, MatListModule, FlexLayoutModule];
+const MATERIAL_MODULES = [
+  MatSidenavModule,
+  MatListModule,
+  FlexLayoutModule,
+  MatToolbarModule,
+  MatButtonModule,
+];
 
 const COMMON_MODULES = [MATERIAL_MODULES, CommonModule];
 

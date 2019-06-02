@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './pages/list/list.component';
 import { ListModule } from './pages/list/list.module';
-import { LayoutComponent } from '@components/layout/layout.component';
 import { LayoutModule } from '@components/layout/layout.module';
+import { LayoutComponent } from '@components/layout/layout.component';
 
 const routes: Routes = [
   {
@@ -12,12 +12,12 @@ const routes: Routes = [
     data: {
       links: [
         {
-          label: 'Listado de membresías',
-          link: '/memberships',
+          label: 'Buscar usuario',
+          link: '/users',
         },
         {
-          label: 'Agregar membresía',
-          link: '/memberships/create',
+          label: 'Registrar usuario',
+          link: '/users/create',
         },
       ],
     },
@@ -36,4 +36,4 @@ const PAGES_MODULES = [ListModule, LayoutModule];
   imports: [RouterModule.forChild(routes), PAGES_MODULES],
   exports: [RouterModule],
 })
-export class MembershipsRoutingModule {}
+export class UsersRoutingModule {}

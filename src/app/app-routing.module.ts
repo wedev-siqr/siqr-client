@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -7,9 +7,13 @@ const routes: Routes = [
     loadChildren: './features/memberships/memberships.module#MembershipsModule',
   },
   {
+    path: 'users',
+    loadChildren: './features/users/users.module#UsersModule',
+  },
+  {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'memberships',
+    redirectTo: 'users',
   },
 ];
 

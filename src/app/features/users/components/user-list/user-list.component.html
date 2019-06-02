@@ -1,0 +1,31 @@
+<mat-table [dataSource]="source" class="mat-elevation-z1">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+    <mat-cell *matCellDef="let user"> {{ user.id }} # </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Nombre completo</mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      {{ user.name }} {{ user.firstSurname }} {{ user.secondSurname }} Lorem
+      Ipsum Dolore
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="registerDate">
+    <mat-header-cell *matHeaderCellDef>Fecha de registro</mat-header-cell>
+    <mat-cell *matCellDef="let user">
+      {{ user.registerDate | date: 'dd/MM/yyyy' }} 01/01/19
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>
+      Acciones
+    </mat-header-cell>
+    <mat-cell *matCellDef="let user" fxLayoutGap="10px">
+      <button mat-stroked-button>Ver</button>
+      <button mat-stroked-button color="primary">Editar</button>
+      <button mat-stroked-button color="warn">Eliminar</button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
