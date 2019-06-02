@@ -1,5 +1,13 @@
-<mat-sidenav-container>
-  <mat-sidenav opened mode="side" [fixedInViewport]="true" [fixedTopGap]="64">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a [routerLink]="['/users']" mat-button>Usuarios</a>
+    <a href="#" mat-button>Pagos</a>
+    <a [routerLink]="['/memberships']" mat-button>Categorías</a>
+    <a href="#" mat-button>Acceso QR</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-drawer-container>
+  <mat-drawer opened mode="side" [style.width.vw]="15">
     <mat-nav-list>
       <a
         mat-list-item
@@ -9,8 +17,10 @@
         {{ item.label }}
       </a>
     </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content fxFlex [style.padding.px]="15">
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div [style.padding.px]="15">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

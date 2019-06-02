@@ -9,7 +9,7 @@ describe('ListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: fromModule.COMMON_DECLARATIONS,
-      imports: fromModule.COMMON_MODULES,
+      imports: fromModule.COMMON_IMPORTS,
     }).compileComponents();
   }));
 
