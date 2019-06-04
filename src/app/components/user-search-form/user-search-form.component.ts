@@ -20,7 +20,7 @@ export class UserSearchFormComponent extends FormBase<
       name: ['', Validators.pattern(NAME_REGEX)],
       firstSurname: ['', Validators.pattern(NAME_REGEX)],
       secondSurname: ['', Validators.pattern(NAME_REGEX)],
-      birthdate: [''],
+      birthdate: [{ value: '', disabled: true }],
       email: ['', Validators.email],
       curp: ['', Validators.pattern(CURP_REGEX)],
     });

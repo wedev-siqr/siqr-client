@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'layout',
@@ -13,10 +13,7 @@ export class LayoutComponent implements OnInit {
   links$: Observable<any[]>;
 
   constructor(private activatedRoute: ActivatedRoute) {
-    this.links$ = this.activatedRoute.data.pipe(
-      map((data) => data.links),
-      tap(console.log)
-    );
+    this.links$ = this.activatedRoute.data.pipe(map((data) => data.links));
   }
 
   ngOnInit() {}

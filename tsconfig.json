@@ -16,7 +16,9 @@
     "paths": {
       "@components/*": ["src/app/components/*"],
       "@constants": ["src/app/constants/index.ts"],
-      "@models/*": ["src/app/models/*"]
+      "@models/*": ["src/app/models/*"],
+      "@classes/*": ["src/app/classes/*"],
+      "@services/*": ["src/app/services/*"]
     }
   }
 }

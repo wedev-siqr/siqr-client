@@ -39,7 +39,9 @@
       <mat-label>
         Fecha de nacimiento
       </mat-label>
-      <input matInput formControlName="birthdate" />
+      <input matInput formControlName="birthdate" [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
     </mat-form-field>
     <mat-form-field>
       <mat-label>
@@ -60,5 +62,5 @@
       </mat-error>
     </mat-form-field>
   </div>
-  <button hidden #submitButton></button>
+  <button hidden #submitButton type="submit"></button>
 </form>

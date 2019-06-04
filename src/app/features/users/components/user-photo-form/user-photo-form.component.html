@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Foto de usuario
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form
+      [formGroup]="form"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+      (ngSubmit)="onSubmit()"
+    >
+      <img
+        class="rounded"
+        [style.max-width.px]="180"
+        [src]="(photo$ | async) || 'assets/img/photo-placeholder.png'"
+        alt="Imagen del cliente"
+      />
+      <p
+        class="mat-body text-warn"
+        *ngIf="form.hasError('required', 'photo') && validated"
+      >
+        La imagen es requerida.
+      </p>
+      <button
+        type="button"
+        mat-flat-button
+        color="primary"
+        (click)="onOpenCamera()"
+      >
+        Capturar imagen
+      </button>
+      <input
+        #fileInput
+        type="file"
+        hidden
+        [multiple]="false"
+        accept="image/jpeg, image/png"
+      />
+      <button type="submit" hidden #submitButton></button>
+    </form>
+  </mat-card-content>
+</mat-card>

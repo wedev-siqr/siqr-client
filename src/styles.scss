@@ -17,3 +17,13 @@ body {
 button {
   text-transform: uppercase;
 }
+
+img {
+  height: auto;
+  width: 100%;
+  max-width: 720px;
+
+  &.rounded {
+    border-radius: 50%;
+  }
+}

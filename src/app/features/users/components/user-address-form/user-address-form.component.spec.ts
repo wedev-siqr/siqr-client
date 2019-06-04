@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import fromModule from './user-search.module';
-import { UserSearchComponent } from './user-search.component';
+import fromModule from './user-address-form.module';
+import { UserAddressFormComponent } from './user-address-form.component';
 
-describe('UserSearchComponent', () => {
-  let component: UserSearchComponent;
-  let fixture: ComponentFixture<UserSearchComponent>;
+describe('UserAddressFormComponent', () => {
+  let component: UserAddressFormComponent;
+  let fixture: ComponentFixture<UserAddressFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('UserSearchComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserSearchComponent);
+    fixture = TestBed.createComponent(UserAddressFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

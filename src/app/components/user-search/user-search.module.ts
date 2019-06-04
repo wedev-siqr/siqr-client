@@ -24,4 +24,4 @@ const COMMON_DECLARATIONS = [UserSearchComponent];
 })
 export class UserSearchModule {}
 
-export default { COMMON_DECLARATIONS, COMMON_IMPORTS: COMMON_MODULES };
+export default { COMMON_DECLARATIONS, COMMON_MODULES };
