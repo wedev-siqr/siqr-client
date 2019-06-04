@@ -1,0 +1,59 @@
+<form [formGroup]="form" fxLayoutGap="10px" (ngSubmit)="onSubmit()">
+  <mat-form-field fxFlex>
+    <mat-label>
+      Nombre
+    </mat-label>
+    <input matInput formControlName="name" placeholder="Membresía" />
+    <mat-error>
+      <span *ngIf="form.hasError('required', 'name')">
+        El campo es requerido.
+      </span>
+      <span *ngIf="form.hasError('pattern', 'name')">
+        Sólo se permiten letras, números y sólo espacios entre palabras.
+      </span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>
+      Precio
+    </mat-label>
+    <span matPrefix>$</span>
+    <input
+      matInput
+      type="number"
+      min="1"
+      formControlName="price"
+      placeholder="100.00"
+    />
+    <span matSuffix>MXN</span>
+    <mat-error>
+      <span *ngIf="form.hasError('required', 'price')">
+        El campo es requerido.
+      </span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>
+      Duración
+    </mat-label>
+    <input matInput type="number" min="1" formControlName="duration" />
+    <mat-error>
+      <span *ngIf="form.hasError('required', 'duration')">
+        El campo es requerido.
+      </span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select formControlName="duration_time_unit">
+      <mat-option *ngFor="let type of renovationTypes" [value]="type.value">
+        {{ type.label }}
+      </mat-option>
+    </mat-select>
+    <mat-error>
+      <span *ngIf="form.hasError('required', 'duration_time_unit')">
+        El campo es requerido.
+      </span>
+    </mat-error>
+  </mat-form-field>
+  <button hidden type="submit" #submitButton></button>
+</form>

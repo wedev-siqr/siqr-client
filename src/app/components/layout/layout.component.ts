@@ -13,10 +13,7 @@ export class LayoutComponent implements OnInit {
   links$: Observable<any[]>;
 
   constructor(private activatedRoute: ActivatedRoute) {
-    this.links$ = this.activatedRoute.data.pipe(
-      map((data) => data.links),
-      tap(console.log)
-    );
+    this.links$ = this.activatedRoute.data.pipe(map((data) => data.links));
   }
 
   ngOnInit() {}
