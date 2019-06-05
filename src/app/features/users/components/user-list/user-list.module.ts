@@ -4,10 +4,11 @@ import { UserListComponent } from './user-list.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RouterModule } from '@angular/router';
 
 const MATERIAL_MODULES = [MatButtonModule, MatTableModule, FlexLayoutModule];
 
-const COMMON_IMPORTS = [CommonModule, MATERIAL_MODULES];
+const COMMON_IMPORTS = [CommonModule, MATERIAL_MODULES, RouterModule];
 
 const COMMON_DECLARATIONS = [UserListComponent];
 

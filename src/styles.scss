@@ -14,7 +14,8 @@ body {
   background-color: #fff;
 }
 
-button {
+button,
+a[class*='button'] {
   text-transform: uppercase;
 }
 

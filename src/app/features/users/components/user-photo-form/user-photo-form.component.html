@@ -29,6 +29,7 @@
         mat-flat-button
         color="primary"
         (click)="onOpenCamera()"
+        *ngIf="form.disabled"
       >
         Capturar imagen
       </button>

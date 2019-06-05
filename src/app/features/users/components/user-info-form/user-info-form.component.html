@@ -115,7 +115,7 @@
             matSuffix
             [for]="picker"
           ></mat-datepicker-toggle>
-          <mat-datepicker #picker [disabled]="isDisabled"></mat-datepicker>
+          <mat-datepicker #picker [disabled]="form.disabled"></mat-datepicker>
           <mat-error>
             <span *ngIf="form.hasError('required', 'birthdate')">
               Este campo es requerido.

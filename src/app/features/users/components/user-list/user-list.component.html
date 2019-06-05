@@ -21,7 +21,7 @@
       Acciones
     </mat-header-cell>
     <mat-cell *matCellDef="let user" fxLayoutGap="10px">
-      <button mat-stroked-button>Ver</button>
+      <a [routerLink]="['/users', 1]" mat-stroked-button>Ver</a>
       <button mat-stroked-button color="primary">Editar</button>
       <button mat-stroked-button color="warn">Eliminar</button>
     </mat-cell>

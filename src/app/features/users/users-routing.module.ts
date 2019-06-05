@@ -6,6 +6,8 @@ import { LayoutModule } from '@components/layout/layout.module';
 import { LayoutComponent } from '@components/layout/layout.component';
 import { CreateModule } from './pages/create/create.module';
 import { CreateComponent } from './pages/create/create.component';
+import { DetailModule } from './pages/detail/detail.module';
+import { DetailComponent } from './pages/detail/detail.component';
 
 const routes: Routes = [
   {
@@ -29,6 +31,10 @@ const routes: Routes = [
         component: CreateComponent,
       },
       {
+        path: ':id',
+        component: DetailComponent,
+      },
+      {
         path: '',
         component: ListComponent,
       },
@@ -36,7 +42,7 @@ const routes: Routes = [
   },
 ];
 
-const PAGES_MODULES = [ListModule, LayoutModule, CreateModule];
+const PAGES_MODULES = [ListModule, LayoutModule, CreateModule, DetailModule];
 
 @NgModule({
   imports: [RouterModule.forChild(routes), PAGES_MODULES],
