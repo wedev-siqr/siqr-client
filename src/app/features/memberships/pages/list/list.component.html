@@ -1,0 +1,44 @@
+<h1 class="mat-headline">
+  Listado de membresías
+</h1>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+    <mat-cell *matCellDef="let membership">Membresía</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef>Precio</mat-header-cell>
+    <mat-cell *matCellDef="let membership">$$$</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="duration">
+    <mat-header-cell *matHeaderCellDef>Duración</mat-header-cell>
+    <mat-cell *matCellDef="let membership">1</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="timeUnit">
+    <mat-header-cell *matHeaderCellDef>Unidad de tiempo</mat-header-cell>
+    <mat-cell *matCellDef="let membership">Semana</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+    <mat-cell *matCellDef="let membership">
+      <div fxLayoutGap="10px">
+        <a
+          [routerLink]="['/memberships', 1, 'edit']"
+          mat-stroked-button
+          color="primary"
+        >
+          Editar
+        </a>
+        <button mat-stroked-button color="warn">Eliminar</button>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>
+      Monto a pagar
+    </mat-label>
+    <input type="number" matInput formControlName="amount" />
+  </mat-form-field>
+</form>

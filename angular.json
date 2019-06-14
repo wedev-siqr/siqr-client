@@ -1,0 +1,194 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "siqr-client": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "export": true,
+          "inlineStyle": true,
+          "prefix": ""
+        },
+        "@schematics/angular:class": {
+          "spec": true
+        },
+        "@schematics/angular:directive": {
+          "export": true,
+          "prefix": "",
+          "spec": true
+        },
+        "@schematics/angular:module": {
+          "commonModule": true
+        },
+        "@schematics/angular:pipe": {
+          "export": true,
+          "spec": true
+        },
+        "@schematics/angular:service": {
+          "spec": true
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/siqr-client",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/electron/electron.prod.js",
+              "src/package.json"
+            ],
+            "styles": ["src/theme.scss", "src/styles.scss"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "src/electron/electron.js",
+                  "with": "src/electron/electron.prod.js"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "siqr-client:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "siqr-client:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "siqr-client:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": ["src/styles.scss"],
+            "scripts": [],
+            "assets": ["src/favicon.ico", "src/assets"]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "build-electron": {
+          "builder": "@richapps/ngtron:build",
+          "options": {
+            "browserTarget": "siqr-client:build",
+            "electronMain": "src/electron.ts"
+          }
+        },
+        "package-electron": {
+          "builder": "@richapps/ngtron:package",
+          "options": {
+            "browserTarget": "siqr-client:build",
+            "electronMain": "src/electron.ts",
+            "electronPackage": {
+              "version": "0.0.0",
+              "name": "siqr-client",
+              "main": "electron.js",
+              "dependencies": {}
+            },
+            "packagerConfig": {
+              "mac": ["zip", "dmg"],
+              "config": {
+                "appId": "some.id",
+                "npmRebuild": false,
+                "asar": false,
+                "directories": {
+                  "app": "dist/siqr-client",
+                  "output": "dist/siqr-client-electron",
+                  "buildResources": "/electronResources"
+                },
+                "electronVersion": "4.0.0"
+              }
+            }
+          }
+        },
+        "serve-electron": {
+          "builder": "@richapps/ngtron:serve",
+          "options": {
+            "browserTarget": "siqr-client:build"
+          }
+        }
+      }
+    },
+    "siqr-client-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "siqr-client:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "siqr-client:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "siqr-client"
+}

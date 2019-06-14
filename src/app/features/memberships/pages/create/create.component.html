@@ -1,0 +1,20 @@
+<h1 class="mat-headline">
+  Agregar membresía
+</h1>
+
+<mat-card>
+  <mat-card-content>
+    <membership-form (onSubmit)="onSubmit($event)"></membership-form>
+  </mat-card-content>
+  <mat-card-actions fxLayoutAlign="end" fxLayoutGap="10px">
+    <a routerLink="/memberships" mat-button>Cancelar</a>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="form.shouldDisable()"
+      (click)="form.submit()"
+    >
+      Agregar
+    </button>
+  </mat-card-actions>
+</mat-card>

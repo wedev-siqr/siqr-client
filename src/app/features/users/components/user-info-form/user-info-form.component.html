@@ -1,0 +1,162 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Datos personales
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form
+      [formGroup]="form"
+      fxLayout="column"
+      fxLayoutGap="10px"
+      (ngSubmit)="onSubmit()"
+    >
+      <div fxLayoutGap="10px" fxLayout="column">
+        <div fxFlex fxLayoutGap="10px" fxLayoutAlign="space-between stretch">
+          <mat-form-field fxFlex>
+            <mat-label>
+              Nombre(s)
+            </mat-label>
+            <input matInput formControlName="name" />
+            <mat-error>
+              <span *ngIf="form.hasError('required', 'name')">
+                Este campo es requerido.
+              </span>
+              <span *ngIf="form.hasError('pattern', 'name')">
+                Sólo se aceptan letras y espacios.
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>
+              Apellido paterno
+            </mat-label>
+            <input matInput formControlName="firstSurname" />
+            <mat-error>
+              <span *ngIf="form.hasError('required', 'firstSurname')">
+                Este campo es requerido.
+              </span>
+              <span *ngIf="form.hasError('pattern', 'firstSurname')">
+                Sólo se aceptan letras y espacios.
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>
+              Apellido materno
+            </mat-label>
+            <input matInput formControlName="secondSurname" />
+            <mat-error>
+              <span *ngIf="form.hasError('required', 'secondSurname')">
+                Este campo es requerido.
+              </span>
+              <span *ngIf="form.hasError('pattern', 'secondSurname')">
+                Sólo se aceptan letras y espacios.
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex fxLayoutGap="10px" fxLayoutAlign="space-between stretch">
+          <mat-form-field fxFlex>
+            <mat-label>
+              CURP
+            </mat-label>
+            <input matInput formControlName="curp" maxlength="18" />
+            <mat-error>
+              <span *ngIf="form.hasError('required', 'curp')">
+                Este campo es requerido.
+              </span>
+              <span *ngIf="form.hasError('pattern', 'curp')">
+                No es una CURP válida.
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>
+              Teléfono
+            </mat-label>
+            <input matInput formControlName="phone" maxlength="10" />
+            <mat-error>
+              <span *ngIf="form.hasError('required', 'phone')">
+                Este campo es requerido.
+              </span>
+              <span *ngIf="form.hasError('pattern', 'phone')">
+                No es un teléfono válido.
+              </span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <mat-label>
+              Email
+            </mat-label>
+            <input matInput formControlName="email" />
+            <mat-error>
+              <span *ngIf="form.hasError('required', 'email')">
+                Este campo es requerido.
+              </span>
+              <span *ngIf="form.hasError('email', 'email')">
+                No es un email válido.
+              </span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayoutGap="10px">
+        <mat-form-field fxFlex>
+          <mat-label>
+            Fecha de nacimiento
+          </mat-label>
+          <input
+            matInput
+            formControlName="birthdate"
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker [disabled]="form.disabled"></mat-datepicker>
+          <mat-error>
+            <span *ngIf="form.hasError('required', 'birthdate')">
+              Este campo es requerido.
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>
+            Sexo
+          </mat-label>
+          <mat-select formControlName="gender">
+            <mat-option value="h">
+              Hombre
+            </mat-option>
+            <mat-option value="m">
+              Mujer
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="form.hasError('required', 'gender')">
+              Este campo es requerido.
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>
+            Tipo de membresía
+          </mat-label>
+          <mat-select formControlName="membershipId">
+            <mat-option value="1">
+              Ninguna
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="form.hasError('required', 'membershipId')">
+              Este campo es requerido.
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button type="submit" hidden #submitButton></button>
+    </form>
+  </mat-card-content>
+</mat-card>

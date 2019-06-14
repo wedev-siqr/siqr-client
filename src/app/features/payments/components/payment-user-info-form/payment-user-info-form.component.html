@@ -1,0 +1,26 @@
+<form [formGroup]="form" fxLayout="row wrap" fxLayoutGap="10px">
+  <mat-form-field fxFlex>
+    <mat-label>
+      Tipo de membresía
+    </mat-label>
+    <input matInput formControlName="membership" />
+  </mat-form-field>
+  <mat-form-field fxFlex>
+    <mat-label>
+      Fecha de vencimiento
+    </mat-label>
+    <input matInput formControlName="expireDate" />
+  </mat-form-field>
+  <mat-form-field fxFlex>
+    <mat-label>
+      Costo por membresía
+    </mat-label>
+    <input matInput formControlName="price" />
+  </mat-form-field>
+  <mat-form-field fxFlex>
+    <mat-label>
+      Días antes de vencimiento
+    </mat-label>
+    <input matInput formControlName="daysBeforeExpire" />
+  </mat-form-field>
+</form>

@@ -1,0 +1,117 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Dirección
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div fxLayoutGap="10px" fxLayoutAlign="space-between stretch">
+        <mat-form-field fxFlex="40%">
+          <mat-label>
+            Calle
+          </mat-label>
+          <input matInput formControlName="street" />
+          <mat-error>
+            <span *ngIf="form.hasError('required', 'street')">
+              Este campo es requerido.
+            </span>
+            <span *ngIf="form.hasError('pattern', 'street')">
+              Sólo se aceptan letras y números.
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>
+            No. Ext.
+          </mat-label>
+          <input matInput formControlName="external_number" />
+          <mat-error>
+            <span *ngIf="form.hasError('required', 'external_number')">
+              Este campo es requerido.
+            </span>
+            <span *ngIf="form.hasError('pattern', 'external_number')">
+              Sólo se aceptan letras, números y un espacio.
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>
+            No. Int. (Opcional)
+          </mat-label>
+          <input matInput formControlName="internal_number" />
+          <mat-error>
+            <span *ngIf="form.hasError('required', 'internal_number')">
+              Este campo es requerido.
+            </span>
+            <span *ngIf="form.hasError('pattern', 'internal_number')">
+              Sólo se aceptan letras, números y un espacio.
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>
+            Código postal
+          </mat-label>
+          <input matInput formControlName="postal_code" maxlength="5" />
+          <mat-error>
+            <span *ngIf="form.hasError('required', 'postal_code')">
+              Este campo es requerido.
+            </span>
+            <span *ngIf="form.hasError('pattern', 'postal_code')">
+              No es un código postal válido.
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayoutGap="10px" fxLayoutAlign="space-between stretch">
+        <mat-form-field fxFlex>
+          <mat-label>
+            Estado
+          </mat-label>
+          <mat-select formControlName="state">
+            <mat-option value="Veracruz">
+              Veracruz
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="form.hasError('required', 'state')">
+              Este campo es requerido.
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>
+            Municipio
+          </mat-label>
+          <mat-select formControlName="municipality">
+            <mat-option value="Orizaba">
+              Orizaba
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="form.hasError('required', 'municipality')">
+              Este campo es requerido.
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-label>
+            Colonia
+          </mat-label>
+          <mat-select formControlName="district">
+            <mat-option value="Centro">
+              Centro
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <span *ngIf="form.hasError('required', 'district')">
+              Este campo es requerido.
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button type="submit" hidden #submitButton></button>
+    </form>
+  </mat-card-content>
+</mat-card>

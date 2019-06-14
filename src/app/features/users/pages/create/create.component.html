@@ -1,0 +1,19 @@
+<div fxLayoutAlign="space-between">
+  <h1 class="mat-headline">Registrar usuario</h1>
+  <div fxLayoutGap="10px">
+    <span class="mat-body text-warn" *ngIf="form.invalid">
+      Parece que hay campos faltantes.
+    </span>
+    <a routerLink="/users" mat-button>Cancelar</a>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="form.invalid"
+      (click)="form.submit()"
+    >
+      Guardar usuario
+    </button>
+  </div>
+</div>
+
+<user-form-layout></user-form-layout>

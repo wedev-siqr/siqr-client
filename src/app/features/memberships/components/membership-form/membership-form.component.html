@@ -1,0 +1,57 @@
+<form
+  [formGroup]="form"
+  fxLayoutAlign="space-between"
+  fxLayoutGap="10px"
+  (ngSumbit)="onSubmit()"
+>
+  <mat-form-field fxFlex>
+    <mat-label>
+      Nombre de membresía
+    </mat-label>
+    <input matInput formControlName="name" />
+    <mat-error *ngIf="form.hasError('required', 'name')">
+      El campo es requerido.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field fxFlex>
+    <mat-label>
+      Precio
+    </mat-label>
+    <span matPrefix>$</span>
+    <input type="number" matInput formControlName="price" />
+    <mat-error>
+      <span *ngIf="form.hasError('required', 'price')">
+        El campo es requerido.
+      </span>
+      <span *ngIf="form.hasError('pattern', 'price')">
+        Sólo se aceptan números.
+      </span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field fxFlex>
+    <mat-label>
+      Duración
+    </mat-label>
+    <input type="number" matInput formControlName="duration" />
+    <mat-error>
+      <span *ngIf="form.hasError('required', 'duration')">
+        El campo es requerido.
+      </span>
+      <span *ngIf="form.hasError('pattern', 'duration')">
+        Sólo se aceptan números.
+      </span>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field fxFlex>
+    <mat-select formControlName="duration_time_unit">
+      <mat-option value="D">Día</mat-option>
+      <mat-option value="W">Semana</mat-option>
+      <mat-option value="M">Mes</mat-option>
+      <mat-option value="Y">Año</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.hasError('required', 'duration_time_unit')">
+      El campo es requerido.
+    </mat-error>
+  </mat-form-field>
+  <button type="submit" hidden #submitButton></button>
+</form>

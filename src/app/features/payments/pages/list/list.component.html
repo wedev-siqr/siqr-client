@@ -1,0 +1,9 @@
+<div fxLayout="column" fxLayoutGap="10px">
+  <h1 class="mat-headline">
+    Historial de pagos
+  </h1>
+
+  <user-search (search)="onSearch($event)"></user-search>
+
+  <payments-list [source]="source"></payments-list>
+</div>

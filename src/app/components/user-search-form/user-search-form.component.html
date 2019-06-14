@@ -1,0 +1,66 @@
+<form [formGroup]="form">
+  <div fxLayout="row wrap" fxLayoutGap="15px">
+    <mat-form-field fxFlex>
+      <mat-label>
+        Código de usuario
+      </mat-label>
+      <input matInput formControlName="code" />
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>
+        Nombre
+      </mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="form.hasError('pattern', 'name')">
+        Sólo se aceptan letras.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>
+        Apellido paterno
+      </mat-label>
+      <input matInput formControlName="firstSurname" />
+      <mat-error *ngIf="form.hasError('pattern', 'name')">
+        Sólo se aceptan letras.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>
+        Apellido materno
+      </mat-label>
+      <input matInput formControlName="secondSurname" />
+      <mat-error *ngIf="form.hasError('pattern', 'name')">
+        Sólo se aceptan letras.
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="15px">
+    <mat-form-field fxFlex>
+      <mat-label>
+        Fecha de nacimiento
+      </mat-label>
+      <input matInput formControlName="birthdate" [matDatepicker]="picker" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>
+        Email
+      </mat-label>
+      <input matInput formControlName="email" />
+      <mat-error *ngIf="form.hasError('email', 'email')">
+        No es un email válido.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <mat-label>
+        CURP
+      </mat-label>
+      <input matInput formControlName="curp" />
+      <mat-error *ngIf="form.hasError('pattern', 'curp')">
+        No es una curp válida.
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <button hidden #submitButton type="submit"></button>
+</form>

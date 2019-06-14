@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+.mat-sidenav-container,
+.mat-drawer-container {
+  background-color: #fff;
+}
+
+button,
+a[class*='button'] {
+  text-transform: uppercase;
+}
+
+img.custom {
+  height: auto;
+  width: 200px;
+  max-width: 720px;
+
+  &.rounded {
+    border-radius: 50%;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+canvas {
+  display: none !important;
+}

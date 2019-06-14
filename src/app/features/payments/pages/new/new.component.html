@@ -1,0 +1,27 @@
+<div fxLayout="column" fxLayoutGap="10px">
+  <h1 class="mat-headline">
+    Registro de pago
+  </h1>
+
+  <user-search></user-search>
+
+  <mat-card>
+    <mat-card-content fxLayout="column" fxLayoutGap="10px">
+      <payment-user-info-form></payment-user-info-form>
+      <div fxLayoutAlign="space-between center">
+        <payment-form (onSubmit)="onSubmit($event)"></payment-form>
+        <div fxLayoutGap="10px">
+          <a roterLink="/payments" mat-button>Cancelar</a>
+          <button
+            mat-flat-button
+            color="primary"
+            [disabled]="form.shouldDisable()"
+            (click)="form.submit()"
+          >
+            Pagar
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
