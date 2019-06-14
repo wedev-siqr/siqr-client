@@ -8,6 +8,8 @@ import { CreateModule } from './pages/create/create.module';
 import { CreateComponent } from './pages/create/create.component';
 import { DetailModule } from './pages/detail/detail.module';
 import { DetailComponent } from './pages/detail/detail.component';
+import { EditModule } from './pages/edit/edit.module';
+import { EditComponent } from './pages/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -31,6 +33,10 @@ const routes: Routes = [
         component: CreateComponent,
       },
       {
+        path: ':id/edit',
+        component: EditComponent,
+      },
+      {
         path: ':id',
         component: DetailComponent,
       },
@@ -42,7 +48,13 @@ const routes: Routes = [
   },
 ];
 
-const PAGES_MODULES = [ListModule, LayoutModule, CreateModule, DetailModule];
+const PAGES_MODULES = [
+  ListModule,
+  LayoutModule,
+  CreateModule,
+  DetailModule,
+  EditModule,
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes), PAGES_MODULES],

@@ -13,8 +13,7 @@
       (ngSubmit)="onSubmit()"
     >
       <img
-        class="rounded"
-        [style.max-width.px]="180"
+        class="custom"
         [src]="(photo$ | async) || 'assets/img/photo-placeholder.png'"
         alt="Imagen del cliente"
       />
@@ -25,21 +24,14 @@
         La imagen es requerida.
       </p>
       <button
+        *ngIf="!form.disabled"
         type="button"
         mat-flat-button
         color="primary"
         (click)="onOpenCamera()"
-        *ngIf="form.disabled"
       >
         Capturar imagen
       </button>
-      <input
-        #fileInput
-        type="file"
-        hidden
-        [multiple]="false"
-        accept="image/jpeg, image/png"
-      />
       <button type="submit" hidden #submitButton></button>
     </form>
   </mat-card-content>

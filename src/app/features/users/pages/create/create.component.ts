@@ -10,6 +10,7 @@ import { UserAddressFormComponent } from '../../components/user-address-form/use
 import { UserMedicalFormComponent } from '../../components/user-medical-form/user-medical-form.component';
 import { Observable, Subject, from, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { UserFormLayoutComponent } from '../../components/user-form-layout/user-form-layout.component';
 
 @Component({
   selector: 'create',
@@ -18,33 +19,8 @@ import { tap } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateComponent implements OnInit {
-  @ViewChild(UserInfoFormComponent, { static: false })
-  userInfo: UserInfoFormComponent;
-
-  @ViewChild(UserPhotoFormComponent, { static: false })
-  userPhoto: UserPhotoFormComponent;
-
-  @ViewChild(UserAddressFormComponent, { static: false })
-  userAddress: UserAddressFormComponent;
-
-  @ViewChild(UserMedicalFormComponent, { static: false })
-  userMedical: UserMedicalFormComponent;
+  @ViewChild(UserFormLayoutComponent, { static: true })
+  form: UserFormLayoutComponent;
 
   ngOnInit() {}
-
-  get fieldsUncompleted() {
-    return (
-      (this.userInfo && this.userInfo.shouldDisable()) ||
-      (this.userPhoto && this.userPhoto.shouldDisable()) ||
-      (this.userAddress && this.userAddress.shouldDisable()) ||
-      (this.userMedical && this.userMedical.shouldDisable())
-    );
-  }
-
-  submit() {
-    this.userInfo.submit();
-    this.userPhoto.submit();
-    this.userAddress.submit();
-    this.userMedical.submit();
-  }
 }

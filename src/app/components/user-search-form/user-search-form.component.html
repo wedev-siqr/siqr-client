@@ -1,12 +1,12 @@
 <form [formGroup]="form">
-  <div fxLayoutGap="15px">
-    <mat-form-field>
+  <div fxLayout="row wrap" fxLayoutGap="15px">
+    <mat-form-field fxFlex>
       <mat-label>
         Código de usuario
       </mat-label>
       <input matInput formControlName="code" />
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field fxFlex>
       <mat-label>
         Nombre
       </mat-label>
@@ -15,7 +15,7 @@
         Sólo se aceptan letras.
       </mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field fxFlex>
       <mat-label>
         Apellido paterno
       </mat-label>
@@ -24,7 +24,7 @@
         Sólo se aceptan letras.
       </mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field fxFlex>
       <mat-label>
         Apellido materno
       </mat-label>
@@ -34,8 +34,8 @@
       </mat-error>
     </mat-form-field>
   </div>
-  <div fxLayoutGap="15px">
-    <mat-form-field>
+  <div fxLayout="row wrap" fxLayoutGap="15px">
+    <mat-form-field fxFlex>
       <mat-label>
         Fecha de nacimiento
       </mat-label>
@@ -43,7 +43,7 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker disabled="false"></mat-datepicker>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field fxFlex>
       <mat-label>
         Email
       </mat-label>
@@ -52,7 +52,7 @@
         No es un email válido.
       </mat-error>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field fxFlex>
       <mat-label>
         CURP
       </mat-label>

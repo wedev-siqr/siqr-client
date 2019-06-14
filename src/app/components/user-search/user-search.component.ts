@@ -16,12 +16,14 @@ import { UsersFilterPayload } from '@models/users';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserSearchComponent implements OnInit {
-  @ViewChild(UserSearchFormComponent, { static: false })
+  @ViewChild(UserSearchFormComponent, { static: true })
   form: UserSearchFormComponent;
 
   @Output() search: EventEmitter<Partial<UsersFilterPayload>>;
 
-  constructor() {}
+  constructor() {
+    this.search = new EventEmitter();
+  }
 
   ngOnInit() {}
 }

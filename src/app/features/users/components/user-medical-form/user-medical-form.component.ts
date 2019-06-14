@@ -14,6 +14,7 @@ export class UserMedicalFormComponent extends DisableForm implements OnInit {
     super();
     this.form = formBuilder.group({
       affiliation: ['', Validators.required],
+      affiliationName: [''],
       bloodType: ['', Validators.required],
       rh: ['', Validators.required],
       alergies: [''],
@@ -30,6 +31,14 @@ export class UserMedicalFormComponent extends DisableForm implements OnInit {
         ],
         phone: ['', [Validators.required, Validators.pattern(PHONE_REGEX)]],
       }),
+    });
+
+    const affiliationName = this.form.get('affiliationName');
+
+    this.form.get('affiliation').valueChanges.subscribe((value) => {
+      if (value == 'other') affiliationName.setValidators(Validators.required);
+      else affiliationName.clearValidators();
+      affiliationName.updateValueAndValidity();
     });
   }
 

@@ -11,6 +11,14 @@ const routes: Routes = [
     loadChildren: './features/users/users.module#UsersModule',
   },
   {
+    path: 'payments',
+    loadChildren: './features/payments/payments.module#PaymentsModule',
+  },
+  {
+    path: 'qr-access',
+    loadChildren: './features/qr-access/qr-access.module#QrAccessModule',
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'users',

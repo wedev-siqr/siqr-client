@@ -6,6 +6,7 @@ import { UserPhotoFormModule } from '../user-photo-form/user-photo-form.module';
 import { UserInfoFormModule } from '../user-info-form/user-info-form.module';
 import { UserMedicalFormModule } from '../user-medical-form/user-medical-form.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const COMMON_MODULES = [
   CommonModule,
@@ -14,6 +15,7 @@ const COMMON_MODULES = [
   UserInfoFormModule,
   UserMedicalFormModule,
   FlexLayoutModule,
+  ReactiveFormsModule,
 ];
 
 const COMMON_DECLARATIONS = [UserFormLayoutComponent];

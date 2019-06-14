@@ -1,15 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { DisableForm } from '@classes/disable-form';
-import { FileReaderService } from '@services/file-reader.service';
-import { Subscription, fromEvent, Observable } from 'rxjs';
-import { switchMap, mapTo, filter, tap, map } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { filter, tap } from 'rxjs/operators';
+import { WebcamDialogComponent } from '../../dialogs/webcam-dialog/webcam-dialog.component';
 
 @Component({
   selector: 'user-photo-form',
@@ -17,20 +12,14 @@ import { switchMap, mapTo, filter, tap, map } from 'rxjs/operators';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserPhotoFormComponent extends DisableForm implements OnInit {
-  @ViewChild('fileInput', { read: ElementRef, static: false })
-  fileInput: ElementRef;
-
+export class UserPhotoFormComponent extends DisableForm {
   validated: boolean;
 
-  photo$: Observable<string | ArrayBuffer>;
+  photo$: Observable<string>;
 
   private subscription: Subscription;
 
-  constructor(
-    private fileReaderService: FileReaderService,
-    formBuilder: FormBuilder
-  ) {
+  constructor(formBuilder: FormBuilder, private matDialog: MatDialog) {
     super();
     this.form = formBuilder.group({
       photo: ['', Validators.required],
@@ -39,17 +28,6 @@ export class UserPhotoFormComponent extends DisableForm implements OnInit {
     this.subscription = this.form.valueChanges.subscribe(() => {
       this.validated = false;
     });
-  }
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {
-    this.photo$ = fromEvent(this.fileInput.nativeElement, 'input').pipe(
-      map(() => this.fileInput.nativeElement.files[0]),
-      filter((file) => !!file),
-      switchMap((file) => this.fileReaderService.toBase64(file)),
-      tap((photo) => this.form.patchValue({ photo }))
-    );
   }
 
   ngOnDestroy() {
@@ -62,6 +40,14 @@ export class UserPhotoFormComponent extends DisableForm implements OnInit {
   }
 
   onOpenCamera() {
-    this.fileInput.nativeElement.click();
+    this.photo$ = this.matDialog
+      .open(WebcamDialogComponent)
+      .afterClosed()
+      .pipe(
+        filter((photo) => !!photo),
+        tap((photo) => {
+          this.form.patchValue({ photo });
+        })
+      );
   }
 }

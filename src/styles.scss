@@ -19,12 +19,20 @@ a[class*='button'] {
   text-transform: uppercase;
 }
 
-img {
+img.custom {
   height: auto;
-  width: 100%;
+  width: 200px;
   max-width: 720px;
 
   &.rounded {
     border-radius: 50%;
   }
+}
+
+.hidden {
+  display: none;
+}
+
+canvas {
+  display: none !important;
 }

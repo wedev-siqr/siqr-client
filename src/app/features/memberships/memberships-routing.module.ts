@@ -4,6 +4,10 @@ import { ListComponent } from './pages/list/list.component';
 import { ListModule } from './pages/list/list.module';
 import { LayoutComponent } from '@components/layout/layout.component';
 import { LayoutModule } from '@components/layout/layout.module';
+import { CreateModule } from './pages/create/create.module';
+import { CreateComponent } from './pages/create/create.component';
+import { EditModule } from './pages/edit/edit.module';
+import { EditComponent } from './pages/edit/edit.component';
 
 const routes: Routes = [
   {
@@ -23,6 +27,14 @@ const routes: Routes = [
     },
     children: [
       {
+        path: 'create',
+        component: CreateComponent,
+      },
+      {
+        path: ':id/edit',
+        component: EditComponent,
+      },
+      {
         path: '',
         component: ListComponent,
       },
@@ -30,7 +42,7 @@ const routes: Routes = [
   },
 ];
 
-const PAGES_MODULES = [ListModule, LayoutModule];
+const PAGES_MODULES = [ListModule, LayoutModule, CreateModule, EditModule];
 
 @NgModule({
   imports: [RouterModule.forChild(routes), PAGES_MODULES],

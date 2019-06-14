@@ -1,0 +1,38 @@
+<div fxLayoutAlign="center center">
+  <mat-card class="mat-elevation-z2">
+    <mat-card-header fxLayoutAlign="center">
+      <mat-card-title>
+        Muestre el código QR a la cámara.
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayoutAlign="center">
+      <qr-scanner
+        [class.hidden]="!(showScanner$ | async)"
+        [updateTime]="500"
+      ></qr-scanner>
+      <ng-container *ngIf="!(showScanner$ | async)">
+        <mat-spinner [fxShow]="isLoading$ | async"></mat-spinner>
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <ng-container *ngIf="!!username; else userNotFound">
+            <h1 class="mat-headline">
+              Bienvenido de nuevo
+            </h1>
+            <mat-chip-list>
+              <mat-chip color="primary" selected>
+                {{ username }}
+              </mat-chip>
+            </mat-chip-list>
+          </ng-container>
+        </div>
+        <ng-template #userNotFound>
+          <h1 class="mat-headline">
+            Al parecer el código no pertenece a ningún usuario registrado.
+          </h1>
+          <button mat-flat-button color="primary" (click)="onRetry()">
+            Volver a escanear
+          </button>
+        </ng-template>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</div>

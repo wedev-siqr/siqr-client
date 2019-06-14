@@ -27,7 +27,13 @@
     <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
     <mat-cell *matCellDef="let membership">
       <div fxLayoutGap="10px">
-        <button mat-stroked-button color="primary">Editar</button>
+        <a
+          [routerLink]="['/memberships', 1, 'edit']"
+          mat-stroked-button
+          color="primary"
+        >
+          Editar
+        </a>
         <button mat-stroked-button color="warn">Eliminar</button>
       </div>
     </mat-cell>

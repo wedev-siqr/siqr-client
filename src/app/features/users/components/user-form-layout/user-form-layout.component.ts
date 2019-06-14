@@ -1,15 +1,18 @@
 import {
-  Component,
-  OnInit,
   ChangeDetectionStrategy,
+  Component,
   Input,
+  OnInit,
+  Output,
   ViewChild,
-  AfterViewInit,
 } from '@angular/core';
-import { UserInfoFormComponent } from '../user-info-form/user-info-form.component';
-import { UserPhotoFormComponent } from '../user-photo-form/user-photo-form.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { combineLatest, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { UserAddressFormComponent } from '../user-address-form/user-address-form.component';
+import { UserInfoFormComponent } from '../user-info-form/user-info-form.component';
 import { UserMedicalFormComponent } from '../user-medical-form/user-medical-form.component';
+import { UserPhotoFormComponent } from '../user-photo-form/user-photo-form.component';
 
 @Component({
   selector: 'user-form-layout',
@@ -17,29 +20,70 @@ import { UserMedicalFormComponent } from '../user-medical-form/user-medical-form
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserFormLayoutComponent implements AfterViewInit {
+export class UserFormLayoutComponent implements OnInit {
   @Input('readonly') isReadonly: boolean;
 
-  @ViewChild(UserInfoFormComponent, { static: false })
+  @ViewChild(UserInfoFormComponent, { static: true })
   userInfo: UserInfoFormComponent;
 
-  @ViewChild(UserPhotoFormComponent, { static: false })
+  @ViewChild(UserPhotoFormComponent, { static: true })
   userPhoto: UserPhotoFormComponent;
 
-  @ViewChild(UserAddressFormComponent, { static: false })
+  @ViewChild(UserAddressFormComponent, { static: true })
   userAddress: UserAddressFormComponent;
 
-  @ViewChild(UserMedicalFormComponent, { static: false })
+  @ViewChild(UserMedicalFormComponent, { static: true })
   userMedical: UserMedicalFormComponent;
 
-  constructor() {}
+  form: FormGroup;
 
-  ngAfterViewInit() {
+  @Output('onSubmit') _submit: Observable<any>;
+
+  constructor(formBuilder: FormBuilder) {
+    this.form = formBuilder.group({
+      info: '',
+      photo: '',
+      medicalInfo: '',
+      address: '',
+    });
+  }
+
+  ngOnInit() {
+    this._submit = combineLatest(
+      this.userInfo._submit,
+      this.userPhoto._submit,
+      this.userMedical._submit,
+      this.userAddress._submit
+    ).pipe(
+      map(([info, photo, medicalInfo, address]) => ({
+        info,
+        photo,
+        medicalInfo,
+        address,
+      }))
+    );
+
     if (this.isReadonly) {
       this.userInfo.form.disable();
       this.userPhoto.form.disable();
       this.userAddress.form.disable();
       this.userMedical.form.disable();
     }
+  }
+
+  get invalid() {
+    return (
+      this.userInfo.shouldDisable() ||
+      this.userPhoto.shouldDisable() ||
+      this.userAddress.shouldDisable() ||
+      this.userMedical.shouldDisable()
+    );
+  }
+
+  submit() {
+    this.userInfo.submit();
+    this.userPhoto.submit();
+    this.userAddress.submit();
+    this.userMedical.submit();
   }
 }

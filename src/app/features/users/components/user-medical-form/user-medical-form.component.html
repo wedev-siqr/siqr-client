@@ -25,7 +25,10 @@
           <mat-label>
             Nombre de afiliación
           </mat-label>
-          <input matInput />
+          <input matInput formControlName="affiliationName" />
+          <mat-error *ngIf="form.hasError('required', 'affiliationName')">
+            El campo es requerido.
+          </mat-error>
         </mat-form-field>
         <mat-form-field>
           <mat-label>

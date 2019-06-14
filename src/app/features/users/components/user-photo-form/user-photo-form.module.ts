@@ -5,14 +5,17 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { WebcamDialogModule } from '../../dialogs/webcam-dialog/webcam-dialog.module';
 
-const MATERIAL_MODULES = [MatCardModule, MatButtonModule];
+const MATERIAL_MODULES = [MatCardModule, MatButtonModule, MatDialogModule];
 
 const COMMON_IMPORTS = [
   CommonModule,
   MATERIAL_MODULES,
   ReactiveFormsModule,
   FlexLayoutModule,
+  WebcamDialogModule,
 ];
 
 const COMMON_DECLARATIONS = [UserPhotoFormComponent];

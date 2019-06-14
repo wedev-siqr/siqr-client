@@ -22,7 +22,13 @@
     </mat-header-cell>
     <mat-cell *matCellDef="let user" fxLayoutGap="10px">
       <a [routerLink]="['/users', 1]" mat-stroked-button>Ver</a>
-      <button mat-stroked-button color="primary">Editar</button>
+      <a
+        [routerLink]="['/users', 1, 'edit']"
+        mat-stroked-button
+        color="primary"
+      >
+        Editar
+      </a>
       <button mat-stroked-button color="warn">Eliminar</button>
     </mat-cell>
   </ng-container>

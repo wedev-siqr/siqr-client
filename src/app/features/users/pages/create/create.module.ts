@@ -8,6 +8,7 @@ import { UserAddressFormModule } from '../../components/user-address-form/user-a
 import { UserPhotoFormModule } from '../../components/user-photo-form/user-photo-form.module';
 import { UserMedicalFormModule } from '../../components/user-medical-form/user-medical-form.module';
 import { UserFormLayoutModule } from '../../components/user-form-layout/user-form-layout.module';
+import { RouterModule } from '@angular/router';
 
 const MATERIAL_MODULES = [MatButtonModule];
 
@@ -16,6 +17,7 @@ const COMMON_IMPORTS = [
   FlexLayoutModule,
   MATERIAL_MODULES,
   UserFormLayoutModule,
+  RouterModule,
 ];
 
 const COMMON_DECLARATIONS = [CreateComponent];

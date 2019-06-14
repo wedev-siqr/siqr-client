@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { UsersFilterPayload } from '@models/users';
 
 @Component({
   selector: 'list',
@@ -12,4 +13,6 @@ export class ListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  onSearch(filter: UsersFilterPayload) {}
 }

@@ -11,9 +11,11 @@ import { map } from 'rxjs/operators';
 })
 export class LayoutComponent implements OnInit {
   links$: Observable<any[]>;
+  hasLinks$: Observable<boolean>;
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.links$ = this.activatedRoute.data.pipe(map((data) => data.links));
+    this.hasLinks$ = this.links$.pipe(map((links) => !!links));
   }
 
   ngOnInit() {}

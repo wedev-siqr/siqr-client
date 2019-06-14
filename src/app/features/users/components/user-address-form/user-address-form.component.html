@@ -55,7 +55,7 @@
           </mat-label>
           <input matInput formControlName="postal_code" maxlength="5" />
           <mat-error>
-            <span *ngIf="form.hasError('required', 'state')">
+            <span *ngIf="form.hasError('required', 'postal_code')">
               Este campo es requerido.
             </span>
             <span *ngIf="form.hasError('pattern', 'postal_code')">

@@ -1,0 +1,22 @@
+<ng-container *ngIf="tookPhoto; else camera">
+  <img [src]="image.imageAsDataUrl" />
+</ng-container>
+<ng-template #camera>
+  <webcam
+    [trigger]="trigger$"
+    [allowCameraSwitch]="true"
+    (imageCapture)="onTakePhoto($event)"
+  ></webcam>
+</ng-template>
+
+<div mat-dialog-actions fxLayoutAlign="center" fxLayoutGap="10px">
+  <ng-container *ngIf="tookPhoto; else trigger">
+    <button mat-button (click)="onReset()">Repetir</button>
+    <button mat-flat-button color="primary" (click)="onSave()">Guardar</button>
+  </ng-container>
+  <ng-template #trigger>
+    <button mat-flat-button color="primary" (click)="trigger$.next()">
+      Tomar foto
+    </button>
+  </ng-template>
+</div>

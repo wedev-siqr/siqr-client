@@ -1,7 +1,7 @@
 <div fxLayout="column" fxLayoutGap="10px">
   <h1 class="mat-headline">Buscar usuario</h1>
 
-  <user-search></user-search>
+  <user-search (search)="onSearch($event)"></user-search>
 
   <user-list [source]="data$"></user-list>
 </div>
