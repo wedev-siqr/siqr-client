@@ -2,7 +2,7 @@
   [formGroup]="form"
   fxLayoutAlign="space-between"
   fxLayoutGap="10px"
-  (ngSumbit)="onSubmit()"
+  (ngSubmit)="onSubmit()"
 >
   <mat-form-field fxFlex>
     <mat-label>
@@ -43,7 +43,7 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field fxFlex>
-    <mat-select formControlName="duration_time_unit">
+    <mat-select formControlName="durationTimeUnit">
       <mat-option value="D">Día</mat-option>
       <mat-option value="W">Semana</mat-option>
       <mat-option value="M">Mes</mat-option>

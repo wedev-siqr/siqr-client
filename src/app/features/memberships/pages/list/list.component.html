@@ -1,26 +1,42 @@
+<mat-progress-bar
+  mode="indeterminate"
+  *ngIf="isLoading$ | async"
+></mat-progress-bar>
+
 <h1 class="mat-headline">
   Listado de membresías
 </h1>
 
-<mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+<mat-table [dataSource]="memberships$ | async" class="mat-elevation-z1">
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
-    <mat-cell *matCellDef="let membership">Membresía</mat-cell>
+    <mat-cell *matCellDef="let membership">
+      {{ membership.name }}
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="price">
     <mat-header-cell *matHeaderCellDef>Precio</mat-header-cell>
-    <mat-cell *matCellDef="let membership">$$$</mat-cell>
+    <mat-cell *matCellDef="let membership"> ${{ membership.price }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="duration">
     <mat-header-cell *matHeaderCellDef>Duración</mat-header-cell>
-    <mat-cell *matCellDef="let membership">1</mat-cell>
+    <mat-cell *matCellDef="let membership">
+      {{ membership.duration }}
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="timeUnit">
     <mat-header-cell *matHeaderCellDef>Unidad de tiempo</mat-header-cell>
-    <mat-cell *matCellDef="let membership">Semana</mat-cell>
+    <mat-cell *matCellDef="let membership">
+      <ng-container [ngSwitch]="membership.durationTimeUnit">
+        <p *ngSwitchCase="'D'">Día</p>
+        <p *ngSwitchCase="'W'">Semana</p>
+        <p *ngSwitchCase="'M'">Mes</p>
+        <p *ngSwitchCase="'Y'">Año</p>
+      </ng-container>
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="actions">
@@ -28,13 +44,19 @@
     <mat-cell *matCellDef="let membership">
       <div fxLayoutGap="10px">
         <a
-          [routerLink]="['/memberships', 1, 'edit']"
+          [routerLink]="['/memberships', membership.id, 'edit']"
           mat-stroked-button
           color="primary"
         >
           Editar
         </a>
-        <button mat-stroked-button color="warn">Eliminar</button>
+        <button
+          mat-stroked-button
+          color="warn"
+          (click)="onDelete(membership.id)"
+        >
+          Eliminar
+        </button>
       </div>
     </mat-cell>
   </ng-container>

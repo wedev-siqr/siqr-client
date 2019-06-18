@@ -4,7 +4,10 @@
 
 <mat-card>
   <mat-card-content>
-    <membership-form (onSubmit)="onSubmit($event)"></membership-form>
+    <membership-form
+      [membership]="membership$ | async"
+      (onSubmit)="onSubmit($event)"
+    ></membership-form>
   </mat-card-content>
   <mat-card-actions fxLayoutAlign="end" fxLayoutGap="10px">
     <a routerLink="/memberships" mat-button>Cancelar</a>

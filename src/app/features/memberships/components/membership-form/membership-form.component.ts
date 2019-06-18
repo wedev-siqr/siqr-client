@@ -27,7 +27,7 @@ export class MembershipFormComponent extends FormBase<Membership>
       name: ['', Validators.required],
       price: ['', [Validators.required, Validators.pattern(NUMBER_REGEX)]],
       duration: ['', [Validators.required, Validators.pattern(NUMBER_REGEX)]],
-      duration_time_unit: ['', Validators.required],
+      durationTimeUnit: ['', Validators.required],
     });
   }
 

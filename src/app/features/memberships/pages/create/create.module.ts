@@ -6,8 +6,15 @@ import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MembershipFormModule } from '../../components/membership-form/membership-form.module';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-const MATERIAL_MODULES = [MatButtonModule, MatCardModule];
+const MATERIAL_MODULES = [
+  MatButtonModule,
+  MatCardModule,
+  MatProgressBarModule,
+  MatSnackBarModule,
+];
 
 const COMMON_MODULES = [
   CommonModule,
