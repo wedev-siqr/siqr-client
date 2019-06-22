@@ -14,7 +14,7 @@
     >
       <img
         class="custom"
-        [src]="(photo$ | async) || 'assets/img/photo-placeholder.png'"
+        [src]="src || (photo$ | async) || 'assets/img/photo-placeholder.png'"
         alt="Imagen del cliente"
       />
       <p

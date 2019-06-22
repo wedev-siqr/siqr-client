@@ -1,16 +1,17 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
-  ChangeDetectionStrategy,
   ViewChild,
 } from '@angular/core';
-import { UserInfoFormComponent } from '../../components/user-info-form/user-info-form.component';
-import { UserPhotoFormComponent } from '../../components/user-photo-form/user-photo-form.component';
-import { UserAddressFormComponent } from '../../components/user-address-form/user-address-form.component';
-import { UserMedicalFormComponent } from '../../components/user-medical-form/user-medical-form.component';
-import { Observable, Subject, from, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Membership } from '@models/memberships';
+import { MembershipsService } from '@services/memberships.service';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { UserFormLayoutComponent } from '../../components/user-form-layout/user-form-layout.component';
+import { ClientsService } from '@services/clients.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'create',
@@ -22,5 +23,32 @@ export class CreateComponent implements OnInit {
   @ViewChild(UserFormLayoutComponent, { static: true })
   form: UserFormLayoutComponent;
 
-  ngOnInit() {}
+  memberships$: Observable<Membership[]>;
+
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  constructor(
+    private membershipsService: MembershipsService,
+    private clientsService: ClientsService,
+    private router: Router,
+    private snackbar: MatSnackBar
+  ) {}
+
+  ngOnInit() {
+    this.memberships$ = this.membershipsService.getMemberships();
+  }
+
+  onSubmit(value: any) {
+    this.isLoading$.next(true);
+    this.clientsService
+      .createClient(value)
+      .pipe(finalize(() => this.isLoading$.next(false)))
+      .subscribe(
+        () => {
+          this.snackbar.open('Se ha registrado al cliente.', 'OK');
+          this.router.navigate(['/users']);
+        },
+        () => this.snackbar.open('Ocurrió un error creando al cliente.')
+      );
+  }
 }

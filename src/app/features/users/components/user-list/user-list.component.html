@@ -1,19 +1,18 @@
 <mat-table [dataSource]="source" class="mat-elevation-z2">
   <ng-container matColumnDef="id">
     <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{ user.id }} # </mat-cell>
+    <mat-cell *matCellDef="let user"> #{{ user.id }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Nombre completo</mat-header-cell>
     <mat-cell *matCellDef="let user">
-      {{ user.name }} {{ user.firstSurname }} {{ user.secondSurname }} Lorem
-      Ipsum Dolore
+      {{ user.name }} {{ user.firstSurname }} {{ user.secondSurname }}
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="registerDate">
     <mat-header-cell *matHeaderCellDef>Fecha de registro</mat-header-cell>
     <mat-cell *matCellDef="let user">
-      {{ user.registerDate | date: 'dd/MM/yyyy' }} 01/01/19
+      {{ user.registerDate | date: 'dd/MM/yyyy' }}
     </mat-cell>
   </ng-container>
   <ng-container matColumnDef="actions">
@@ -21,15 +20,19 @@
       Acciones
     </mat-header-cell>
     <mat-cell *matCellDef="let user" fxLayoutGap="10px">
-      <a [routerLink]="['/users', 1]" mat-stroked-button>Ver</a>
+      <a [routerLink]="['/users', user.id]" mat-stroked-button>
+        Ver
+      </a>
       <a
-        [routerLink]="['/users', 1, 'edit']"
+        [routerLink]="['/users', user.id, 'edit']"
         mat-stroked-button
         color="primary"
       >
         Editar
       </a>
-      <button mat-stroked-button color="warn">Eliminar</button>
+      <button mat-stroked-button color="warn" (click)="onDelete(user.id)">
+        Eliminar
+      </button>
     </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

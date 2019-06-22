@@ -7,6 +7,10 @@ import { AppProvidersModule } from './providers/app-provider.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
+
+registerLocaleData(es);
 
 const MATERIAL_MODULE = [MatToolbarModule, MatButtonModule];
 

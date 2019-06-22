@@ -1,4 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+} from '@angular/core';
 import { DisableForm } from '@classes/disable-form';
 import { FormBuilder, Validators } from '@angular/forms';
 import {
@@ -6,6 +11,7 @@ import {
   DIRECTION_NUMBER_REGEX,
   POSTAL_CODE_REGEX,
 } from '@constants';
+import { ClientAddress } from '@models/users';
 
 @Component({
   selector: 'user-address-form',
@@ -14,6 +20,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserAddressFormComponent extends DisableForm implements OnInit {
+  @Input() set address(address: ClientAddress) {
+    if (!address) return;
+
+    this.form.patchValue(address);
+  }
+
   constructor(formBuilder: FormBuilder) {
     super();
     this.form = formBuilder.group({
@@ -21,12 +33,12 @@ export class UserAddressFormComponent extends DisableForm implements OnInit {
         '',
         [Validators.required, Validators.pattern(DIRECTION_STREET_REGEX)],
       ],
-      external_number: [
+      externalNumber: [
         '',
         [Validators.required, Validators.pattern(DIRECTION_NUMBER_REGEX)],
       ],
-      internal_number: ['', Validators.pattern(DIRECTION_NUMBER_REGEX)],
-      postal_code: [
+      internalNumber: ['', Validators.pattern(DIRECTION_NUMBER_REGEX)],
+      postalCode: [
         '',
         [Validators.required, Validators.pattern(POSTAL_CODE_REGEX)],
       ],

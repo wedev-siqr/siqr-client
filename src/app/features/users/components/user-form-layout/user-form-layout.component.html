@@ -1,14 +1,27 @@
 <div fxLayout="column" fxLayoutGap="10px">
   <div fxLayout="row" fxLayoutGap="10px">
     <div fxFlex="1 1 75%">
-      <user-info-form></user-info-form>
+      <user-info-form
+        [isSubmitting]="isLoading"
+        [memberships]="memberships"
+        [info]="client?.client"
+      ></user-info-form>
     </div>
     <div fxFlex>
-      <user-photo-form></user-photo-form>
+      <user-photo-form
+        [isSubmitting]="isLoading"
+        [src]="client?.client?.photoUrl"
+      ></user-photo-form>
     </div>
   </div>
 
-  <user-address-form></user-address-form>
+  <user-address-form
+    [isSubmitting]="isLoading"
+    [address]="client?.direction"
+  ></user-address-form>
 
-  <user-medical-form></user-medical-form>
+  <user-medical-form
+    [isSubmitting]="isLoading"
+    [medicalData]="client?.medicalInfo"
+  ></user-medical-form>
 </div>

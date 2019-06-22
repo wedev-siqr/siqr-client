@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DisableForm } from '@classes/disable-form';
@@ -14,6 +14,8 @@ import { WebcamDialogComponent } from '../../dialogs/webcam-dialog/webcam-dialog
 })
 export class UserPhotoFormComponent extends DisableForm {
   validated: boolean;
+
+  @Input() src: string;
 
   photo$: Observable<string>;
 

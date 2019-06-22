@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MembershipsService } from '@services/memberships.service';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { Membership } from '@models/memberships';
-import { switchMap, tap, catchError } from 'rxjs/operators';
+import { switchMap, tap, catchError, finalize } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -32,16 +32,19 @@ export class ListComponent implements OnInit {
 
   onDelete(membershipId: number) {
     this.isLoading$.next(true);
-    this.memberships$ = this.membershipsService
+    this.membershipsService
       .deleteMembership(membershipId)
-      .pipe(
-        tap(() => this.isLoading$.next(false)),
-        catchError(() => {
-          this.snackbar.open('Hubo un error borrando la membresía.');
-          return this.memberships$;
-        }),
-        switchMap(() => this.membershipsService.getMemberships()),
-        tap(() => this.snackbar.open('Se ha borrado la membresía.'))
+      .pipe(finalize(() => this.isLoading$.next(false)))
+      .subscribe(
+        () => {
+          this.snackbar.open('Se ha borrado la membresía.', 'OK');
+          this.memberships$ = this.membershipsService.getMemberships();
+        },
+        () =>
+          this.snackbar.open(
+            'No puede eliminar esta membresía, algunos clientes aún están asignados a ella.',
+            'OK'
+          )
       );
   }
 }

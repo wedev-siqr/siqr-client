@@ -25,12 +25,12 @@
           <mat-label>
             No. Ext.
           </mat-label>
-          <input matInput formControlName="external_number" />
+          <input matInput formControlName="externalNumber" />
           <mat-error>
-            <span *ngIf="form.hasError('required', 'external_number')">
+            <span *ngIf="form.hasError('required', 'externalNumber')">
               Este campo es requerido.
             </span>
-            <span *ngIf="form.hasError('pattern', 'external_number')">
+            <span *ngIf="form.hasError('pattern', 'externalNumber')">
               Sólo se aceptan letras, números y un espacio.
             </span>
           </mat-error>
@@ -39,12 +39,12 @@
           <mat-label>
             No. Int. (Opcional)
           </mat-label>
-          <input matInput formControlName="internal_number" />
+          <input matInput formControlName="internalNumber" />
           <mat-error>
-            <span *ngIf="form.hasError('required', 'internal_number')">
+            <span *ngIf="form.hasError('required', 'internalNumber')">
               Este campo es requerido.
             </span>
-            <span *ngIf="form.hasError('pattern', 'internal_number')">
+            <span *ngIf="form.hasError('pattern', 'internalNumber')">
               Sólo se aceptan letras, números y un espacio.
             </span>
           </mat-error>
@@ -53,12 +53,12 @@
           <mat-label>
             Código postal
           </mat-label>
-          <input matInput formControlName="postal_code" maxlength="5" />
+          <input matInput formControlName="postalCode" maxlength="5" />
           <mat-error>
-            <span *ngIf="form.hasError('required', 'postal_code')">
+            <span *ngIf="form.hasError('required', 'postalCode')">
               Este campo es requerido.
             </span>
-            <span *ngIf="form.hasError('pattern', 'postal_code')">
+            <span *ngIf="form.hasError('pattern', 'postalCode')">
               No es un código postal válido.
             </span>
           </mat-error>
@@ -69,11 +69,16 @@
           <mat-label>
             Estado
           </mat-label>
-          <mat-select formControlName="state">
-            <mat-option value="Veracruz">
-              Veracruz
-            </mat-option>
-          </mat-select>
+          <ng-container *ngIf="form.disabled; else stateSelect">
+            <input matInput formControlName="state" />
+          </ng-container>
+          <ng-template #stateSelect>
+            <mat-select formControlName="state">
+              <mat-option value="Veracruz">
+                Veracruz
+              </mat-option>
+            </mat-select>
+          </ng-template>
           <mat-error>
             <span *ngIf="form.hasError('required', 'state')">
               Este campo es requerido.
@@ -84,11 +89,16 @@
           <mat-label>
             Municipio
           </mat-label>
-          <mat-select formControlName="municipality">
-            <mat-option value="Orizaba">
-              Orizaba
-            </mat-option>
-          </mat-select>
+          <ng-container *ngIf="form.disabled; else municipalitySelect">
+            <input matInput formControlName="municipality" />
+          </ng-container>
+          <ng-template #municipalitySelect>
+            <mat-select formControlName="municipality">
+              <mat-option value="Orizaba">
+                Orizaba
+              </mat-option>
+            </mat-select>
+          </ng-template>
           <mat-error>
             <span *ngIf="form.hasError('required', 'municipality')">
               Este campo es requerido.
@@ -99,11 +109,16 @@
           <mat-label>
             Colonia
           </mat-label>
-          <mat-select formControlName="district">
-            <mat-option value="Centro">
-              Centro
-            </mat-option>
-          </mat-select>
+          <ng-container *ngIf="form.disabled; else districtSelect">
+            <input matInput formControlName="district" />
+          </ng-container>
+          <ng-template #districtSelect>
+            <mat-select formControlName="district">
+              <mat-option value="Centro">
+                Centro
+              </mat-option>
+            </mat-select>
+          </ng-template>
           <mat-error>
             <span *ngIf="form.hasError('required', 'district')">
               Este campo es requerido.

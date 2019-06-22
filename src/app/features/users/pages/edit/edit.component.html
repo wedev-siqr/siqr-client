@@ -1,7 +1,12 @@
+<mat-progress-bar
+  *ngIf="isLoading$ | async"
+  mode="indeterminate"
+></mat-progress-bar>
+
 <div fxLayoutAlign="space-between start">
   <h1 class="mat-headline">Editar usuario</h1>
   <div fxLayoutGap="10px">
-    <span class="mat-body text-warn" *ngIf="form.invalid">
+    <span class="mat-body text-warn" *ngIf="form.shouldDisable">
       Parece que hay campos faltantes.
     </span>
     <a routerLink="/users" mat-stroked-button>
@@ -10,7 +15,7 @@
     <button
       mat-flat-button
       color="primary"
-      [disabled]="form.invalid"
+      [disabled]="form.shouldDisable"
       (click)="form.submit()"
     >
       Guardar cambios
@@ -18,4 +23,8 @@
   </div>
 </div>
 
-<user-form-layout></user-form-layout>
+<user-form-layout
+  (onSubmit)="onSubmit($event)"
+  [client]="client$ | async"
+  [memberships]="memberships$ | async"
+></user-form-layout>

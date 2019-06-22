@@ -1,4 +1,6 @@
-export interface UsersFilterPayload {
+import { Membership } from './memberships';
+
+export interface ClientsFilterPayload {
   code: string;
   name: string;
   firstSurname: string;
@@ -7,14 +9,15 @@ export interface UsersFilterPayload {
   email: string;
   curp: string;
 }
-
-export interface UserPayload {
-  photo: UserPhoto;
-  info: UserInfo;
-  address: UserAddress;
+export interface ClientPayload {
+  direction: ClientAddress;
+  medicalInfo: ClientMedicalInfo;
+  membership: Membership;
+  client: ClientInfo;
+  emergencyContact?: EmergencyContact;
 }
 
-export interface UserInfo {
+export interface ClientInfo {
   name: string;
   firstSurname: string;
   secondSurname: string;
@@ -23,10 +26,13 @@ export interface UserInfo {
   curp: string;
   phone: string;
   email: string;
-  membershipId: number;
+  membership_id: number;
+  registerDate: Date;
+  code: string;
+  photoUrl: string;
 }
 
-export interface UserAddress {
+export interface ClientAddress {
   street: string;
   external_number: string;
   internal_number: string;
@@ -36,7 +42,7 @@ export interface UserAddress {
   state: string;
 }
 
-export interface UserMedicalInfo {
+export interface ClientMedicalInfo {
   affiliation: string;
   bloodType: string;
   rh: string;
@@ -52,6 +58,6 @@ export interface EmergencyContact {
   phone: string;
 }
 
-export interface UserPhoto {
-  photo: string;
+export interface ClientPhoto {
+  photoUrl: string;
 }

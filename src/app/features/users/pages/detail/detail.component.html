@@ -1,3 +1,8 @@
+<mat-progress-bar
+  *ngIf="isLoading$ | async"
+  mode="indeterminate"
+></mat-progress-bar>
+
 <div fxLayoutAlign="space-between start">
   <h1 class="mat-headline">Información de usuario</h1>
   <div fxLayoutGap="10px">
@@ -7,4 +12,4 @@
   </div>
 </div>
 
-<user-form-layout readonly="true"></user-form-layout>
+<user-form-layout [client]="client$ | async" readonly="true"></user-form-layout>

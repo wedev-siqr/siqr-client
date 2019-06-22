@@ -5,8 +5,14 @@ import { UserFormLayoutModule } from '../../components/user-form-layout/user-for
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-const MATERIAL_MODULES = [MatButtonModule];
+const MATERIAL_MODULES = [
+  MatButtonModule,
+  MatSnackBarModule,
+  MatProgressBarModule,
+];
 
 const COMMON_MODULES = [
   CommonModule,

@@ -1,7 +1,12 @@
+<mat-progress-bar
+  *ngIf="isLoading$ | async"
+  mode="indeterminate"
+></mat-progress-bar>
+
 <div fxLayout="column" fxLayoutGap="10px">
   <h1 class="mat-headline">Buscar usuario</h1>
 
   <user-search (search)="onSearch($event)"></user-search>
 
-  <user-list [source]="data$"></user-list>
+  <user-list (delete)="onDelete($event)" [source]="clients$"></user-list>
 </div>

@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { CreateComponent } from './create.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
-import { UserInfoFormModule } from '../../components/user-info-form/user-info-form.module';
-import { UserAddressFormModule } from '../../components/user-address-form/user-address-form.module';
-import { UserPhotoFormModule } from '../../components/user-photo-form/user-photo-form.module';
-import { UserMedicalFormModule } from '../../components/user-medical-form/user-medical-form.module';
-import { UserFormLayoutModule } from '../../components/user-form-layout/user-form-layout.module';
 import { RouterModule } from '@angular/router';
+import { UserFormLayoutModule } from '../../components/user-form-layout/user-form-layout.module';
+import { CreateComponent } from './create.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-const MATERIAL_MODULES = [MatButtonModule];
+const MATERIAL_MODULES = [
+  MatButtonModule,
+  MatSnackBarModule,
+  MatProgressBarModule,
+];
 
 const COMMON_IMPORTS = [
   CommonModule,

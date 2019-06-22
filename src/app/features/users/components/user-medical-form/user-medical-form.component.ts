@@ -1,7 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+} from '@angular/core';
 import { DisableForm } from '@classes/disable-form';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NAME_REGEX, PHONE_REGEX } from '@constants';
+import { ClientMedicalInfo } from '@models/users';
 
 @Component({
   selector: 'user-medical-form',
@@ -10,6 +16,16 @@ import { NAME_REGEX, PHONE_REGEX } from '@constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserMedicalFormComponent extends DisableForm implements OnInit {
+  @Input() set medicalData(medicalData: ClientMedicalInfo) {
+    if (!medicalData) return;
+
+    this.form.patchValue({
+      ...medicalData,
+      bloodType: medicalData.bloodType.trim(),
+      affiliationName: medicalData.affiliation,
+    });
+  }
+
   constructor(formBuilder: FormBuilder) {
     super();
     this.form = formBuilder.group({
@@ -43,4 +59,10 @@ export class UserMedicalFormComponent extends DisableForm implements OnInit {
   }
 
   ngOnInit() {}
+
+  get affiliationPreviewControlName() {
+    return this.form.value.affiliationName != 'OTHER'
+      ? 'affiliation'
+      : 'affiliationName';
+  }
 }

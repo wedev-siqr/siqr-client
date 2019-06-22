@@ -5,8 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserFormLayoutModule } from '../../components/user-form-layout/user-form-layout.module';
 import { DetailComponent } from './detail.component';
 import { RouterModule } from '@angular/router';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-const MATERIAL_MODULES = [MatButtonModule];
+const MATERIAL_MODULES = [MatButtonModule, MatProgressBarModule];
 
 const COMMON_MODULES = [
   CommonModule,

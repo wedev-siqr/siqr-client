@@ -7,7 +7,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { UserSearchFormComponent } from '@components/user-search-form/user-search-form.component';
-import { UsersFilterPayload } from '@models/users';
+import { ClientsFilterPayload } from '@models/users';
 
 @Component({
   selector: 'user-search',
@@ -19,7 +19,7 @@ export class UserSearchComponent implements OnInit {
   @ViewChild(UserSearchFormComponent, { static: true })
   form: UserSearchFormComponent;
 
-  @Output() search: EventEmitter<Partial<UsersFilterPayload>>;
+  @Output() search: EventEmitter<Partial<ClientsFilterPayload>>;
 
   constructor() {
     this.search = new EventEmitter();

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormBase } from '@mediomelon/ng-core';
 import { NAME_REGEX, CURP_REGEX } from '@constants';
-import { UsersFilterPayload } from '@models/users';
+import { ClientsFilterPayload } from '@models/users';
 
 @Component({
   selector: 'user-search-form',
@@ -11,7 +11,7 @@ import { UsersFilterPayload } from '@models/users';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserSearchFormComponent extends FormBase<
-  Partial<UsersFilterPayload>
+  Partial<ClientsFilterPayload>
 > {
   constructor(formBuilder: FormBuilder) {
     super();

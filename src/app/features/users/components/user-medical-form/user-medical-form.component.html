@@ -11,17 +11,22 @@
           <mat-label>
             Afiliación
           </mat-label>
-          <mat-select formControlName="affiliation">
-            <mat-option value="imss">IMSS</mat-option>
-            <mat-option value="issste">ISSSTE</mat-option>
-            <mat-option value="popular">Seguro popular</mat-option>
-            <mat-option value="other">Otra</mat-option>
-          </mat-select>
+          <ng-container *ngIf="form.disabled; else affiliationSelect">
+            <input matInput [formControlName]="affiliationPreviewControlName" />
+          </ng-container>
+          <ng-template #affiliationSelect>
+            <mat-select formControlName="affiliation">
+              <mat-option value="IMSS">IMSS</mat-option>
+              <mat-option value="ISSSTE">ISSSTE</mat-option>
+              <mat-option value="POPULAR">Seguro popular</mat-option>
+              <mat-option value="OTHER">Otra</mat-option>
+            </mat-select>
+          </ng-template>
           <mat-error>
             Este campo es requerido.
           </mat-error>
         </mat-form-field>
-        <mat-form-field *ngIf="form.value.affiliation == 'other'">
+        <mat-form-field *ngIf="form.value.affiliation == 'OTHER'">
           <mat-label>
             Nombre de afiliación
           </mat-label>
@@ -34,12 +39,17 @@
           <mat-label>
             Tipo de sangre
           </mat-label>
-          <mat-select formControlName="bloodType">
-            <mat-option value="A">A</mat-option>
-            <mat-option value="B">B</mat-option>
-            <mat-option value="AB">AB</mat-option>
-            <mat-option value="O">O</mat-option>
-          </mat-select>
+          <ng-container *ngIf="form.disabled; else bloodTypeSelect">
+            <input matInput formControlName="bloodType" />
+          </ng-container>
+          <ng-template #bloodTypeSelect>
+            <mat-select formControlName="bloodType">
+              <mat-option value="A">A</mat-option>
+              <mat-option value="B">B</mat-option>
+              <mat-option value="AB">AB</mat-option>
+              <mat-option value="O">O</mat-option>
+            </mat-select>
+          </ng-template>
           <mat-error>
             Este campo es requerido.
           </mat-error>

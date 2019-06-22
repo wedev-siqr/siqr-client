@@ -1,5 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { UsersFilterPayload } from '@models/users';
+import { ClientsFilterPayload, ClientInfo } from '@models/users';
+import { ClientsService } from '@services/clients.service';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteUserDialogComponent } from '../../dialogs/delete-user-dialog/delete-user-dialog.component';
+import { filter, switchMap, tap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'list',
@@ -8,11 +14,52 @@ import { UsersFilterPayload } from '@models/users';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent implements OnInit {
-  data$ = [{}, {}, {}, {}, {}, {}, {}];
+  clients$: Observable<ClientInfo[]>;
 
-  constructor() {}
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  ngOnInit() {}
+  constructor(
+    private clientsSevice: ClientsService,
+    private dialog: MatDialog,
+    private snackbar: MatSnackBar
+  ) {}
 
-  onSearch(filter: UsersFilterPayload) {}
+  ngOnInit() {
+    this.onGetClients();
+  }
+
+  private onGetClients() {
+    this.isLoading$.next(true);
+    this.clients$ = this.clientsSevice
+      .getClients()
+      .pipe(tap(() => this.isLoading$.next(false)));
+  }
+
+  onSearch(filter: ClientsFilterPayload) {}
+
+  onDelete(clientId: number) {
+    this.dialog
+      .open(DeleteUserDialogComponent, {
+        disableClose: true,
+      })
+      .afterClosed()
+      .pipe(
+        filter(Boolean),
+        tap(() => this.isLoading$.next(true)),
+        switchMap(() => this.clientsSevice.deleteClient(clientId))
+      )
+      .subscribe(
+        () => {
+          this.snackbar.open('Se ha eliminado al cliente.', 'OK');
+          this.onGetClients();
+        },
+        () => {
+          this.snackbar.open(
+            'Ha ocurrido un error al eliminar el cliente. Intente de nuevo.',
+            'OK'
+          );
+          this.isLoading$.next(false);
+        }
+      );
+  }
 }

@@ -46,7 +46,7 @@ export class CreateComponent implements OnInit {
         },
         () =>
           this.snackbar.open(
-            'Ha ocurrido un problema creando la membresía. Intente de nuevo.'
+            'Parece que ya existe una membresía con ese nombre.'
           )
       );
   }

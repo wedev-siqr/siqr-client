@@ -127,10 +127,10 @@
             Sexo
           </mat-label>
           <mat-select formControlName="gender">
-            <mat-option value="h">
+            <mat-option value="H">
               Hombre
             </mat-option>
-            <mat-option value="m">
+            <mat-option value="M">
               Mujer
             </mat-option>
           </mat-select>
@@ -144,13 +144,21 @@
           <mat-label>
             Tipo de membresía
           </mat-label>
-          <mat-select formControlName="membershipId">
-            <mat-option value="1">
-              Ninguna
-            </mat-option>
-          </mat-select>
+          <ng-container *ngIf="form.disabled; else membershipSelect">
+            <input matInput formControlName="membership" />
+          </ng-container>
+          <ng-template #membershipSelect>
+            <mat-select formControlName="membership">
+              <mat-option
+                [value]="membership.id"
+                *ngFor="let membership of memberships"
+              >
+                {{ membership.name }}
+              </mat-option>
+            </mat-select>
+          </ng-template>
           <mat-error>
-            <span *ngIf="form.hasError('required', 'membershipId')">
+            <span *ngIf="form.hasError('required', 'membership')">
               Este campo es requerido.
             </span>
           </mat-error>
