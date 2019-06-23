@@ -1,14 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListComponent } from './list.component';
-import { PaymentsListModule } from '../../components/payments-list/payments-list.module';
-import { UserSearchModule } from '@components/user-search/user-search.module';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { PaymentUserSearchFormModule } from '../../components/payment-user-search-form/payment-user-search-form.module';
+import { PaymentsListModule } from '../../components/payments-list/payments-list.module';
+import { ListComponent } from './list.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+const MATERIAL_MODULES = [MatCardModule, MatProgressBarModule];
 
 const COMMON_MODULES = [
+  MATERIAL_MODULES,
   CommonModule,
   PaymentsListModule,
-  UserSearchModule,
+  PaymentUserSearchFormModule,
   FlexLayoutModule,
 ];
 

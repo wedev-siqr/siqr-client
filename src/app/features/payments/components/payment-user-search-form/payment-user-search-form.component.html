@@ -1,0 +1,26 @@
+<form
+  [formGroup]="form"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="10px"
+  (ngSubmit)="onSubmit()"
+>
+  <div fxLayout="row" fxLayoutGap="10px">
+    <mat-form-field>
+      <mat-label>
+        Código de usuario
+      </mat-label>
+      <input matInput formControlName="code" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>
+        CURP
+      </mat-label>
+      <input matInput formControlName="curp" />
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="10px">
+    <button type="button" mat-button (click)="form.reset()">Limpiar</button>
+    <button type="submit" mat-flat-button color="primary">Buscar</button>
+  </div>
+</form>

@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ClientsFilterPayload } from '@models/users';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'list',
@@ -9,6 +10,8 @@ import { ClientsFilterPayload } from '@models/users';
 })
 export class ListComponent implements OnInit {
   source = [{}, {}];
+
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor() {}
 

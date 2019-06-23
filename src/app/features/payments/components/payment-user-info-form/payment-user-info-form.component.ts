@@ -34,6 +34,9 @@ export class PaymentUserInfoFormComponent extends FormBase<UserPaymentInfo>
   constructor(formBuilder: FormBuilder) {
     super();
     this.form = formBuilder.group({
+      name: '',
+      firstSurname: '',
+      secondSurname: '',
       membership: '',
       expireDate: '',
       price: '',

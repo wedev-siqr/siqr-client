@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { PaymentFormModule } from '../../components/payment-form/payment-form.module';
-import { NewComponent } from './new.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
-import { UserSearchModule } from '@components/user-search/user-search.module';
+import { PaymentFormModule } from '../../components/payment-form/payment-form.module';
 import { PaymentUserInfoFormModule } from '../../components/payment-user-info-form/payment-user-info-form.module';
+import { NewComponent } from './new.component';
+import { PaymentUserSearchFormModule } from '../../components/payment-user-search-form/payment-user-search-form.module';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-const MATERIAL_MODULES = [MatCardModule, MatButtonModule];
+const MATERIAL_MODULES = [MatCardModule, MatButtonModule, MatProgressBarModule];
 
 const COMMON_MODULES = [
   CommonModule,
@@ -17,8 +18,8 @@ const COMMON_MODULES = [
   MATERIAL_MODULES,
   FlexLayoutModule,
   RouterModule,
-  UserSearchModule,
   PaymentUserInfoFormModule,
+  PaymentUserSearchFormModule,
 ];
 
 const COMMON_DECLARATIONS = [NewComponent];
