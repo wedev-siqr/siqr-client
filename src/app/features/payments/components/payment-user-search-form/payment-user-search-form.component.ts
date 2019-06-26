@@ -1,7 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormBase } from '@mediomelon/ng-core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CURP_REGEX } from '@constants';
+import { FormBase } from '@mediomelon/ng-core';
+import { MatDialog } from '@angular/material/dialog';
+import { QrScanDialogComponent } from 'src/app/dialogs/qr-scan-dialog/qr-scan-dialog.component';
 
 @Component({
   selector: 'payment-user-search-form',
@@ -10,13 +11,19 @@ import { CURP_REGEX } from '@constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentUserSearchFormComponent extends FormBase implements OnInit {
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder, private dialog: MatDialog) {
     super();
     this.form = formBuilder.group({
-      code: '',
-      curp: ['', Validators.pattern(CURP_REGEX)],
+      code: ['', Validators.required],
     });
   }
 
   ngOnInit() {}
+
+  onScanCode() {
+    this.dialog
+      .open(QrScanDialogComponent)
+      .afterClosed()
+      .subscribe((code) => this.form.patchValue({ code }));
+  }
 }

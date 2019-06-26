@@ -8,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Membership } from '@models/memberships';
-import { ClientInfo, ClientPayload } from '@models/users';
+import { ClientPayload } from '@models/users';
 import { combineLatest } from 'rxjs';
 import { filter, map, take } from 'rxjs/operators';
 import { UserAddressFormComponent } from '../user-address-form/user-address-form.component';

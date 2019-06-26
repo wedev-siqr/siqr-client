@@ -15,7 +15,9 @@ import { WebcamDialogComponent } from '../../dialogs/webcam-dialog/webcam-dialog
 export class UserPhotoFormComponent extends DisableForm {
   validated: boolean;
 
-  @Input() src: string;
+  @Input() set src(photo) {
+    if (photo) this.form.patchValue({ photo });
+  }
 
   photo$: Observable<string>;
 

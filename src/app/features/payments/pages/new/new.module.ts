@@ -9,8 +9,14 @@ import { PaymentUserInfoFormModule } from '../../components/payment-user-info-fo
 import { NewComponent } from './new.component';
 import { PaymentUserSearchFormModule } from '../../components/payment-user-search-form/payment-user-search-form.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-const MATERIAL_MODULES = [MatCardModule, MatButtonModule, MatProgressBarModule];
+const MATERIAL_MODULES = [
+  MatCardModule,
+  MatButtonModule,
+  MatProgressBarModule,
+  MatSnackBarModule,
+];
 
 const COMMON_MODULES = [
   CommonModule,

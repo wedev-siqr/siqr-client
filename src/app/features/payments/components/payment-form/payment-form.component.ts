@@ -14,6 +14,10 @@ import { FormBuilder } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentFormComponent extends FormBase implements OnInit {
+  @Input() set amout(amount: any) {
+    if (amount) this.form.patchValue({ amount });
+  }
+
   constructor(formBuilder: FormBuilder) {
     super();
     this.form = formBuilder.group({
@@ -23,4 +27,8 @@ export class PaymentFormComponent extends FormBase implements OnInit {
   }
 
   ngOnInit() {}
+
+  submit() {
+    this._submit.emit(this.form.getRawValue());
+  }
 }

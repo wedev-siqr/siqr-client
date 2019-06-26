@@ -11,7 +11,9 @@ import { UserFormLayoutComponent } from '../../components/user-form-layout/user-
 import { ClientsService } from '@services/clients.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { finalize } from 'rxjs/operators';
+import { finalize, switchMap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { QrCodeDialogComponent } from '../../dialogs/qr-code-dialog/qr-code-dialog.component';
 
 @Component({
   selector: 'create',
@@ -31,7 +33,8 @@ export class CreateComponent implements OnInit {
     private membershipsService: MembershipsService,
     private clientsService: ClientsService,
     private router: Router,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -42,7 +45,22 @@ export class CreateComponent implements OnInit {
     this.isLoading$.next(true);
     this.clientsService
       .createClient(value)
-      .pipe(finalize(() => this.isLoading$.next(false)))
+      .pipe(
+        switchMap((response: any) =>
+          this.dialog
+            .open(QrCodeDialogComponent, {
+              disableClose: true,
+              data: {
+                code: response.code,
+                name: `${value.info.name} ${value.info.firstSurname} ${
+                  value.info.secondSurname
+                }`,
+              },
+            })
+            .afterClosed()
+        ),
+        finalize(() => this.isLoading$.next(false))
+      )
       .subscribe(
         () => {
           this.snackbar.open('Se ha registrado al cliente.', 'OK');

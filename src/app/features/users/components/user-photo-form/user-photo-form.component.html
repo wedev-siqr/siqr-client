@@ -14,7 +14,11 @@
     >
       <img
         class="custom"
-        [src]="src || (photo$ | async) || 'assets/img/photo-placeholder.png'"
+        [src]="
+          (photo$ | async) ||
+          form.value?.photo ||
+          'assets/img/photo-placeholder.png'
+        "
         alt="Imagen del cliente"
       />
       <p

@@ -6,11 +6,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UserSearchFormComponent } from './user-search-form.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { QrScanDialogModule } from 'src/app/dialogs/qr-scan-dialog/qr-scan-dialog.module';
 
 const MATERIAL_MODULES = [
   MatFormFieldModule,
   MatInputModule,
   MatDatepickerModule,
+  MatDialogModule,
 ];
 
 const COMMON_IMPORTS = [
@@ -18,6 +21,7 @@ const COMMON_IMPORTS = [
   MATERIAL_MODULES,
   FlexLayoutModule,
   ReactiveFormsModule,
+  QrScanDialogModule,
 ];
 
 const COMMON_DECLARATIONS = [UserSearchFormComponent];

@@ -28,6 +28,7 @@ export class UserInfoFormComponent extends DisableForm {
   constructor(formBuilder: FormBuilder) {
     super();
     this.form = formBuilder.group({
+      id: '',
       name: ['', [Validators.required, Validators.pattern(NAME_REGEX)]],
       firstSurname: ['', [Validators.required, Validators.pattern(NAME_REGEX)]],
       secondSurname: [

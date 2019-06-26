@@ -1,0 +1,22 @@
+<h1 mat-dialog-title fxLayoutAlign="center">
+  Código QR generado.
+</h1>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="start center">
+  <p class="mat-body">
+    Presione el botón de imprimir para obtener una copia del código.
+  </p>
+  <div id="qrcode" fxLayout="column" fxLayoutAlign="start center">
+    <p class="mat-body">
+      <strong>Este es el codigo de acceso para: {{ data.name }}</strong>
+    </p>
+    <ngx-qrcode [qrc-value]="data.code"></ngx-qrcode>
+  </div>
+</div>
+<div mat-dialog-actions fxLayoutAlign="center" fxLayoutGap="10px">
+  <button mat-flat-button color="primary" (click)="onPrint()">
+    Imprimir
+  </button>
+  <button mat-button (click)="dialogRef.close()">
+    Cerrar
+  </button>
+</div>

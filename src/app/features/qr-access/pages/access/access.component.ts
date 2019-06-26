@@ -15,7 +15,8 @@ import {
   combineLatest,
   BehaviorSubject,
 } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, switchMap, finalize } from 'rxjs/operators';
+import { ClientsService } from '@services/clients.service';
 
 @Component({
   selector: 'access',
@@ -35,7 +36,7 @@ export class AccessComponent implements AfterViewInit, OnDestroy {
 
   private subscriptions: Subscription;
 
-  constructor() {
+  constructor(private cs: ClientsService) {
     this.isLoading$ = new BehaviorSubject(false);
     this.scanned$ = new BehaviorSubject(false);
     this.showScanner$ = combineLatest(
@@ -49,11 +50,13 @@ export class AccessComponent implements AfterViewInit, OnDestroy {
       .pipe(
         tap(() => {
           this.isLoading$.next(true);
-          this.scanned$.next(true);
-        })
+        }),
+        switchMap((code) => this.cs.accessWithCode({ code }))
       )
-      .subscribe(() => {
+      .subscribe(({ username }: any) => {
         this.isLoading$.next(false);
+        this.scanned$.next(true);
+        this.username = username;
       });
 
     this.subscriptions.add(

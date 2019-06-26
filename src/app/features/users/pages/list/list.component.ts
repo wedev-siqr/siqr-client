@@ -28,14 +28,16 @@ export class ListComponent implements OnInit {
     this.onGetClients();
   }
 
-  private onGetClients() {
+  private onGetClients(filters?: any) {
     this.isLoading$.next(true);
     this.clients$ = this.clientsSevice
-      .getClients()
+      .getClients(filters)
       .pipe(tap(() => this.isLoading$.next(false)));
   }
 
-  onSearch(filter: ClientsFilterPayload) {}
+  onSearch(filter: ClientsFilterPayload) {
+    this.onGetClients(filter);
+  }
 
   onDelete(clientId: number) {
     this.dialog

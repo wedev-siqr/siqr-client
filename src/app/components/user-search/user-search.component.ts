@@ -25,5 +25,7 @@ export class UserSearchComponent implements OnInit {
     this.search = new EventEmitter();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.form._submit.subscribe((x) => this.search.emit(x));
+  }
 }

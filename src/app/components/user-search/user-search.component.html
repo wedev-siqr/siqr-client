@@ -8,7 +8,7 @@
     <user-search-form (onSubmit)="search.emit($event)"></user-search-form>
   </mat-card-content>
   <mat-card-actions fxLayoutAlign="end" fxLayoutGap="10px">
-    <button mat-button (click)="form.reset()">
+    <button mat-button (click)="form.reset()" *ngIf="form.form.dirty">
       Limpiar
     </button>
     <button mat-flat-button color="primary" (click)="form.submit()">

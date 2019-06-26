@@ -6,6 +6,9 @@
 <div fxLayoutAlign="space-between start">
   <h1 class="mat-headline">Información de usuario</h1>
   <div fxLayoutGap="10px">
+    <button mat-flat-button color="primary" (click)="onGetQRCode()">
+      Ver código qr
+    </button>
     <a routerLink="/users" mat-stroked-button>
       Regresar a listado
     </a>

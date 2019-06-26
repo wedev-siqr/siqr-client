@@ -41,4 +41,17 @@ export class ClientsService {
   deleteClient(clientId: number) {
     return this.http.delete(`${this.url}/${clientId}`);
   }
+
+  getQRCode(clientId: number) {
+    return this.http.get(`${this.url}/${clientId}/code`);
+  }
+
+  getClientByCode(code: any) {
+    const params = new HttpParams().append('code', code);
+    return this.http.get(`${this.url}/code`, { params });
+  }
+
+  accessWithCode(code: any) {
+    return this.http.post(`${environment.api}/access`, code);
+  }
 }

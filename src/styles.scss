@@ -36,3 +36,11 @@ img.custom {
 canvas {
   display: none !important;
 }
+
+.qrcode {
+  & img {
+    $size: 250px;
+    width: $size;
+    height: $size;
+  }
+}

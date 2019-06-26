@@ -6,8 +6,14 @@ import { UserFormLayoutModule } from '../../components/user-form-layout/user-for
 import { DetailComponent } from './detail.component';
 import { RouterModule } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { QrCodeDialogModule } from '../../dialogs/qr-code-dialog/qr-code-dialog.module';
 
-const MATERIAL_MODULES = [MatButtonModule, MatProgressBarModule];
+const MATERIAL_MODULES = [
+  MatButtonModule,
+  MatProgressBarModule,
+  MatDialogModule,
+];
 
 const COMMON_MODULES = [
   CommonModule,
@@ -15,6 +21,7 @@ const COMMON_MODULES = [
   FlexLayoutModule,
   UserFormLayoutModule,
   RouterModule,
+  QrCodeDialogModule,
 ];
 
 const COMMON_DECLARATIONS = [DetailComponent];

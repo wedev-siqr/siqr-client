@@ -12,8 +12,16 @@
       ></qr-scanner>
       <ng-container *ngIf="!(showScanner$ | async)">
         <mat-spinner [fxShow]="isLoading$ | async"></mat-spinner>
-        <div fxLayout="column" fxLayoutAlign="center center">
-          <ng-container *ngIf="!!username; else userNotFound">
+        <div
+          fxLayout="column"
+          [fxHide]="isLoading$ | async"
+          fxLayoutAlign="center center"
+        >
+          <div
+            fxLayoutGap="10px"
+            fxLayout="column"
+            *ngIf="!!username; else userNotFound"
+          >
             <h1 class="mat-headline">
               Bienvenido de nuevo
             </h1>
@@ -22,7 +30,10 @@
                 {{ username }}
               </mat-chip>
             </mat-chip-list>
-          </ng-container>
+            <button mat-stroked-button color="primary" (click)="onRetry()">
+              Volver a escanear
+            </button>
+          </div>
         </div>
         <ng-template #userNotFound>
           <h1 class="mat-headline">

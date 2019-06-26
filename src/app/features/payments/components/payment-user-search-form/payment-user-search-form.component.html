@@ -10,17 +10,22 @@
       <mat-label>
         Código de usuario
       </mat-label>
-      <input matInput formControlName="code" />
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>
-        CURP
-      </mat-label>
-      <input matInput formControlName="curp" />
+      <input (focus)="onScanCode()" matInput formControlName="code" />
+      <mat-error>
+        Debe especificar el código para buscar un usuario.
+      </mat-error>
     </mat-form-field>
   </div>
   <div fxLayout="row" fxLayoutGap="10px">
     <button type="button" mat-button (click)="form.reset()">Limpiar</button>
-    <button type="submit" mat-flat-button color="primary">Buscar</button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="submit()"
+      [disabled]="shouldDisable()"
+    >
+      Buscar
+    </button>
   </div>
+  <button type="submit" [hidden]="true" #submitButton></button>
 </form>

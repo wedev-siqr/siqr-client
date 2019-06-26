@@ -37,7 +37,9 @@
     "angular2-qrscanner": "^1.0.7",
     "core-js": "^2.6.9",
     "moment": "^2.24.0",
+    "ngx-qrcode2": "0.0.9",
     "ngx-webcam": "^0.2.2",
+    "print-js": "^1.0.61",
     "rxjs": "^6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "^0.9.1"
